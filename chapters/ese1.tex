@@ -2,43 +2,118 @@
 % chapters/ese1.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Esercizio 1: Analisi di Segnali}
-\addcontentsline{toc}{chapter}{Esercizio 1: Analisi di Segnali}
 
-\section{Strategia Generale}
-L'esercizio 1 richiede tipicamente di calcolare la trasformata di Fourier $X(f)$ di un segnale $x(t)$, tracciarne i grafici di modulo e fase e, a volte, calcolare un'uscita $y(t)$ data da una convoluzione o un prodotto.
+\section{Definizione della Trasformata di Fourier (FT)}
 
-\subsection{A) Calcolo della Trasformata di Fourier $X(f)$}
-\begin{enumerate}
-    \item \textbf{Scomporre il segnale:} Identificare le funzioni elementari ($\rect, \tri, \cos, \dots$) e le operazioni ($\cdot, *, \text{traslazione}, \dots$) che compongono $x(t)$.
-    \item \textbf{Applicare le proprietà:} Usare le proprietà della FT per trasformare le operazioni nel dominio del tempo in operazioni nel dominio della frequenza.
-    \begin{itemize}
-        \item Se $x(t) = v(t-t_0)$, prima calcola $V(f)$ e poi applica la proprietà di traslazione: $X(f) = V(f)e^{-j2\pi ft_0}$.
-        \item Se $x(t) = v(t)\cos(2\pi f_0 t)$, prima calcola $V(f)$ e poi applica la modulazione: $X(f) = \frac{1}{2}[V(f-f_0) + V(f+f_0)]$.
-        \item Se $x(t) = a(t) * b(t)$, allora $X(f) = A(f)B(f)$.
-        \item Se $x(t) = a(t) \cdot b(t)$, allora $X(f) = A(f) * B(f)$.
-    \end{itemize}
-    \item \textbf{Esempio comune:} La funzione $\tri\left(\frac{f}{W}\right)$ è la convoluzione di due rettangoli: $\frac{1}{W} \rect\left(\frac{f}{W}\right) * \frac{1}{W} \rect\left(\frac{f}{W}\right)$. Questo deriva dal fatto che nel tempo $\sinc^2(Wt)$ è il prodotto di due $\sinc(Wt)$.
-\end{enumerate}
+La Trasformata di Fourier (FT) di un segnale $x(t)$ è definita come:
+\begin{equation*}
+    X(f) = \mathcal{F}\{x(t)\} = \int_{-\infty}^{\infty} x(t) e^{-j2\pi f t} \,dt
+\end{equation*}
 
-\subsection{B) Grafici di Modulo e Fase}
-Dato $X(f) = A(f) e^{j\phi(f)}$, dove $A(f)$ è reale e positivo:
+L'Anti-trasformata di Fourier (IFT) di $X(f)$ è definita come:
+\begin{equation*}
+    x(t) = \mathcal{F}^{-1}\{X(f)\} = \int_{-\infty}^{\infty} X(f) e^{j2\pi f t} \,df
+\end{equation*}
+
+\section{Proprietà della Trasformata di Fourier}
+Di seguito sono riassunte le principali proprietà della Trasformata di Fourier in una tabella.
+
+\begin{table}[h!]
+\centering
+\caption{Proprietà della Trasformata di Fourier.}
+\label{tab:ft_properties}
+\begin{tabular}{lll}
+    \toprule
+    \textbf{Proprietà} & \textbf{Dominio del Tempo} & \textbf{Dominio della Frequenza} \\
+    \midrule
+    Linearità & $a x(t) + b y(t)$ & $a X(f) + b Y(f)$ \\
+    \addlinespace
+    Traslazione nel Tempo & $x(t - t_0)$ & $X(f) e^{-j2\pi f t_0}$ \\
+    \addlinespace
+    Modulazione & $x(t) e^{j2\pi f_0 t}$ & $X(f - f_0)$ \\
+    \addlinespace
+    Convoluzione & $x(t) * y(t)$ & $X(f) \cdot Y(f)$ \\
+    \addlinespace
+    Moltiplicazione & $x(t) \cdot y(t)$ & $X(f) * Y(f)$ \\
+    \addlinespace
+    Dualità & $X(t)$ & $x(-f)$ \\
+    \addlinespace
+    Derivazione nel Tempo & $\dfrac{d^n x(t)}{dt^n}$ & $(j2\pi f)^n X(f)$ \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Relazioni di Eulero}
+Le formule di Eulero sono fondamentali per scomporre segnali sinusoidali e cosinusoidali:
+\begin{align*}
+    \cos(\theta) &= \frac{e^{j\theta} + e^{-j\theta}}{2} \\
+    \sin(\theta) &= \frac{e^{j\theta} - e^{-j\theta}}{2j}
+\end{align*}
+Queste permettono di applicare la proprietà di modulazione a segnali come $\cos(2\pi f_0 t)$ e $\sin(2\pi f_0 t)$.
+
+\section{Teorema di Parseval (Energia del Segnale)}
+L'energia $E_x$ di un segnale può essere calcolata sia nel dominio del tempo che della frequenza:
+\begin{equation*}
+    E_x = \int_{-\infty}^{\infty} |x(t)|^2 \,dt = \int_{-\infty}^{\infty} |X(f)|^2 \,df
+\end{equation*}
+
+\section{Coppie Notevoli di Trasformate di Fourier}
+
+\begin{center}
+\begin{tabular}{c c}
+    \toprule
+    \textbf{Segnale nel Tempo $x(t)$} & \textbf{Trasformata di Fourier $X(f)$} \\
+    \midrule
+    $\rect\left(\frac{t}{T}\right)$ & $T \sinc(fT)$ \\
+    \addlinespace
+    $T \sinc(tT)$ & $\rect\left(\frac{f}{T}\right)$ \\
+    \addlinespace
+    $\tri\left(\frac{t}{T}\right)$ & $T \sinc^2(fT)$ \\
+    \addlinespace
+    $T \sinc^2(tT)$ & $\tri\left(\frac{f}{T}\right)$ \\
+    \addlinespace
+    $\delta(t)$ & $1$ \\
+    \addlinespace
+    $1$ & $\delta(f)$ \\
+    \addlinespace
+    $e^{j2\pi f_0 t}$ & $\delta(f - f_0)$ \\
+    \addlinespace
+    $\cos(2\pi f_0 t)$ & $\frac{1}{2}\left[\delta(f - f_0) + \delta(f + f_0)\right]$ \\
+    \addlinespace
+    $\sin(2\pi f_0 t)$ & $\frac{1}{2j}\left[\delta(f - f_0) - \delta(f + f_0)\right]$ \\
+    \addlinespace
+    $e^{-at} u(t), \quad a>0$ & $\dfrac{1}{a + j2\pi f}$ \\
+    \addlinespace
+    $e^{-\pi t^2}$ (Gaussiana) & $e^{-\pi f^2}$ (Gaussiana) \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Definizioni delle Funzioni Base}
 \begin{itemize}
-    \item \textbf{Modulo:} $|X(f)| = A(f)$
-    \item \textbf{Fase:} $\angle X(f) = \phi(f)$
-\end{itemize}
-\textbf{Attenzione:} Un fattore di traslazione temporale $e^{-j2\pi f t_0}$ introduce una fase lineare.
-\begin{itemize}
-    \item Modulo: $|X(f)e^{-j2\pi f t_0}| = |X(f)|$
-    \item Fase: $\angle (X(f)e^{-j2\pi f t_0}) = \angle X(f) - 2\pi f t_0$
-\end{itemize}
-Se $X(f)$ è reale ma non sempre positivo, la fase sarà $0$ dove $X(f) > 0$ e $\pi$ (o $-\pi$) dove $X(f) < 0$.
+    \item \textbf{Funzione Rettangolo (rect):}
+    \begin{equation*}
+        \rect(t) = 
+        \begin{cases} 
+            1 & \text{per } |t| < 1/2 \\
+            1/2 & \text{per } |t| = 1/2 \\
+            0 & \text{altrove}
+        \end{cases}
+    \end{equation*}
+    
+    \item \textbf{Funzione Seno Cardinale (sinc):}
+    \begin{equation*}
+        \sinc(t) = \frac{\sin(\pi t)}{\pi t}
+    \end{equation*}
 
-\subsection{C) Calcolo dell'uscita $y(t)$}
-Se $y(t) = x(t) * h(t)$, il modo più semplice è quasi sempre passare in frequenza:
-\begin{enumerate}
-    \item Calcola $X(f)$ e $H(f)$.
-    \item Calcola $Y(f) = X(f)H(f)$.
-    \item Antitrasforma $Y(f)$ per trovare $y(t)$.
-\end{enumerate}
-Se l'ingresso $x(t)$ è un coseno, $x(t) = \cos(2\pi f_0 t)$, l'uscita sarà:
-$$ y(t) = |H(f_0)| \cos(2\pi f_0 t + \angle H(f_0)) $$
+    \item \textbf{Funzione Triangolo (tri):}
+    \begin{equation*}
+        \tri(t) = 
+        \begin{cases} 
+            1 - |t| & \text{per } |t| < 1 \\
+            0 & \text{altrove}
+        \end{cases}
+    \end{equation*}
+    La funzione triangolo può anche essere vista come la convoluzione di due rettangoli: $\tri(t) = \rect(t) * \rect(t)$.
+\end{itemize}
