@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% preamble.tex - Pacchetti e impostazioni
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- Lingua e codifica ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% --- Matematica ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{esvect} % Per vettori più carini \vv{}
+
+% --- Grafica e Colori ---
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% --- Layout della pagina ---
+\usepackage[a4paper, top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry} % Margini
+\usepackage{fancyhdr} % Per header e footer personalizzati
+\usepackage{paracol} % Per layout a colonne
+\usepackage{multicol} % Per avere più colonne
+
+% --- Tabelle e liste ---
+\usepackage{booktabs} % Per tabelle più professionali
+\usepackage{enumitem} % Per personalizzare le liste
+
+% --- Impostazioni di Header e Footer ---
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi di header e footer
+\renewcommand{\headrulewidth}{0pt} % Rimuove la linea dell'header
+\cfoot{\thepage} % Numero di pagina centrato nel footer
+
+% --- Comandi personalizzati ---
+\newcommand{\rect}{\text{rect}}
+\newcommand{\tri}{\text{tri}}
+\newcommand{\sinc}{\text{sinc}}
+\newcommand{\FT}{\mathcal{F}} % Trasformata di Fourier
+\newcommand{\IFT}{\mathcal{F}^{-1}} % Anti-trasformata
+
+% --- Teoremi e definizioni (opzionale, per un look più pulito) ---
+\usepackage{amsthm}
+\newtheoremstyle{mystyle}% name
+  {}% space before
+  {}% space after
+  {\itshape}% body font
+  {}% indent
+  {\bfseries}% head font
+  {.}% punctuation
+  {.5em}% space after head
+  {}% head spec
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Teorema}
+\newtheorem{definition}{Definizione}

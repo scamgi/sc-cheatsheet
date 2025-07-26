@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% main.tex - File principale del cheatsheet
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper, 10pt]{article}
+
+% --- Inclusione del preambolo ---
+% Contiene tutti i pacchetti e le impostazioni personalizzate
+\input{preamble.tex}
+
+% --- Dati del documento ---
+\title{
+    \Huge\textbf{Cheatsheet di Segnali per le Comunicazioni} \\
+    \large{Politecnico di Milano}
+}
+\author{Il tuo nome}
+\date{\today}
+
+
+\begin{document}
+
+% --- Pagina del titolo ---
+\maketitle
+\thispagestyle{empty} % Rimuove il numero di pagina dalla pagina del titolo
+
+\newpage
+
+% --- Indice dei contenuti ---
+\tableofcontents
+
+\newpage
+
+% --- Inclusione dei capitoli ---
+\input{chapters/formule_generali.tex}
+\input{chapters/ese1.tex}
+\input{chapters/ese2.tex}
+\input{chapters/ese3.tex}
+
+
+\end{document}

@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chapters/ese2.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Esercizio 2: Campionamento e DFT}
+\addcontentsline{toc}{chapter}{Esercizio 2: Campionamento e DFT}
+
+\section{Strategia Generale}
+L'esercizio 2 tratta il campionamento di un segnale $x(t)$ per ottenere una sequenza $x_n$, l'analisi dello spettro $\tilde{X}(f)$ (spesso con aliasing), la ricostruzione $x_R(t)$ e il calcolo della DFT.
+
+\subsection{A) Trasformata di Fourier del segnale campionato}
+\begin{enumerate}
+    \item \textbf{Disegna $X(f)$:} Inizia sempre disegnando lo spettro del segnale originale $x(t)$.
+    \item \textbf{Replica lo spettro:} Lo spettro del segnale campionato, $\tilde{X}(f)$, è la somma di infinite repliche di $X(f)$, scalate per $f_s$ e centrate in $k \cdot f_s$.
+    $$ \tilde{X}(f) = f_s \sum_{k=-\infty}^{\infty} X(f - k f_s) $$
+    \item \textbf{Verifica l'aliasing:} Disegnando le repliche (almeno per k=-1, 0, 1), controlla se si sovrappongono. Se si sovrappongono, c'è aliasing. Lo spettro risultante nella banda base (es. $[-f_s/2, f_s/2]$) sarà la somma delle parti delle repliche che cadono in quella banda.
+\end{enumerate}
+
+\subsection{B) Segnale ricostruito $x_R(t)$}
+Il segnale ricostruito si ottiene filtrando $\tilde{X}(f)$ con un filtro passa-basso ideale di banda $[-f_s/2, f_s/2]$.
+\begin{enumerate}
+    \item \textbf{Isola la banda base:} Lo spettro del segnale ricostruito, $X_R(f)$, è semplicemente la porzione di $\tilde{X}(f)$ che si trova nell'intervallo $[-f_s/2, f_s/2]$.
+    $$ X_R(f) = \tilde{X}(f) \cdot \rect\left(\frac{f}{f_s}\right) $$
+    \item \textbf{Antitrasforma:} Calcola $x_R(t) = \IFT\{X_R(f)\}$. Spesso $X_R(f)$ è una forma nota (rettangolo, triangolo, ecc.) e l'antitrasformata è immediata.
+\end{enumerate}
+
+\subsection{C) Calcolo della DFT}
+La DFT, $X_k$, è la versione discreta e periodica dello spettro.
+\begin{enumerate}
+    \item \textbf{Analizza la sequenza $x_n$:} Prima di applicare la formula della DFT, controlla se $x_n = x(nT)$ è una sequenza semplice.
+    \begin{itemize}
+        \item Se $x_n = A$: La DFT sarà $A \cdot N \cdot \delta_k$.
+        \item Se $x_n = \delta_{n-n_0}$: La DFT sarà $e^{-j\frac{2\pi}{N}kn_0}$.
+        \item Se $x_n = \cos(\frac{2\pi}{N}k_0 n)$: La DFT sarà $\frac{N}{2}[\delta_{k-k_0} + \delta_{k-(N-k_0)}]$.
+    \end{itemize}
+    \item \textbf{Campionamento di segnali diversi:} Se si campionano $x(t)$ e $x_R(t)$ con la stessa frequenza, si ottiene la stessa sequenza $x_n$ se e solo se il campionamento di $x(t)$ non ha introdotto aliasing. Se c'era aliasing, $x_R(t) \neq x(t)$ e le sequenze campionate saranno diverse.
+\end{enumerate}

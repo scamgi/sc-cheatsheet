@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chapters/ese3.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Esercizio 3: Processi Casuali Stazionari}
+\addcontentsline{toc}{chapter}{Esercizio 3: Processi Casuali Stazionari}
+
+\section{Strategia Generale}
+L'esercizio 3 riguarda i processi casuali, le loro statistiche (media, varianza, autocorrelazione) e come queste vengono modificate da un sistema LTI.
+
+\subsection{A) Calcolo di Autocorrelazione e Parametri}
+\begin{enumerate}
+    \item \textbf{Leggi i dati:} Estrai tutte le informazioni fornite: valor medio ($m_x$), potenza ($P_x$), varianza ($\sigma_x^2$), forma della DSP ($S_x(f)$) o dell'autocorrelazione ($R_x[m]$). Ricorda le relazioni: $P_x = \sigma_x^2 + m_x^2$ e $R_x[m] = C_x[m] + m_x^2$.
+    \item \textbf{Usa le definizioni:}
+        \begin{itemize}
+            \item La potenza è il valore dell'autocorrelazione in zero: $P_x = R_x[0]$.
+            \item La potenza è anche l'integrale della DSP: $P_x = \int_{-1/2}^{1/2} S_x(f) df$.
+            \item Se hai la DSP e cerchi l'autocorrelazione, usa l'antitrasformata di Fourier.
+        \end{itemize}
+    \item \textbf{Trova parametri incogniti:} Spesso viene data una forma parametrica (es. $R_x[m] = A\delta_m + B\delta_{m\pm1}$) e si chiede di trovare A e B. Usa le informazioni date (es. $m_x$, $P_x$, o la potenza di una somma di campioni $E[(x_n+x_{n-1})^2]$) per creare un sistema di equazioni.
+\end{enumerate}
+
+\subsection{B) Filtraggio di Processi Casuali}
+Quando un processo $x_n$ passa attraverso un filtro LTI con risposta in frequenza $H(f)$, si ottiene un processo $y_n$.
+\begin{enumerate}
+    \item \textbf{Calcola la DSP di uscita:} È quasi sempre la via più semplice.
+    $$ S_y(f) = S_x(f) \cdot |H(f)|^2 $$
+    \item \textbf{Trova la potenza di uscita:}
+    $$ P_y = \int_{-1/2}^{1/2} S_y(f) df $$
+    Se il processo in ingresso è bianco, $S_x(f) = \sigma_x^2 + m_x^2\delta(f)$, il calcolo dell'integrale si semplifica.
+    \item \textbf{Calcola l'autocorrelazione di uscita:} Se richiesta, si può ottenere antitrasformando $S_y(f)$.
+    $$ R_y[m] = \IFT\{S_y(f)\} $$
+\end{enumerate}
+
+\subsection{C) Domande Concettuali}
+\begin{itemize}
+    \item \textbf{Positività della DSP:} La densità spettrale di potenza non può mai essere negativa: $S_x(f) \ge 0$ per ogni $f$. Questa proprietà è fondamentale per trovare i limiti di un parametro. Esempio: se $S_x(f) = 4 + A\cos(2\pi f)$, allora si deve avere $|A| \le 4$.
+    \item \textbf{Varianza:} La varianza misura la "dispersione" attorno al valor medio. Se un'operazione non lineare (es. rettificatore, cambio di segno) modifica la forma della densità di probabilità, la varianza cambierà.
+\end{itemize}```
+
+Spero che questa struttura ti sia di grande aiuto. Puoi ora personalizzare ogni file aggiungendo esempi specifici, note personali o formule meno comuni che ritieni importanti. In bocca al lupo per il tuo esame
