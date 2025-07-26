@@ -39,9 +39,46 @@ Di seguito sono riassunte le principali proprietà della Trasformata di Fourier 
     Dualità & $X(t)$ & $x(-f)$ \\
     \addlinespace
     Derivazione nel Tempo & $\dfrac{d^n x(t)}{dt^n}$ & $(j2\pi f)^n X(f)$ \\
+    \midrule
+    \multicolumn{3}{c}{\textbf{Operazioni con l'Impulso di Dirac (Sifting)}} \\
+    \midrule
+    Convoluzione in Tempo & $x(t) * \delta(t-t_0)$ & $X(f) e^{-j2\pi f t_0}$ \\
+    \addlinespace
+    Prodotto in Tempo & $x(t) \cdot \delta(t-t_0)$ & $x(t_0) e^{-j2\pi f t_0}$ \\
+    \addlinespace
+    Convoluzione in Frequenza & $x(t) e^{j2\pi f_0 t}$ & $X(f) * \delta(f-f_0)$ \\
+    \addlinespace
+    Prodotto in Frequenza & $X(f_0) e^{j2\pi f_0 t}$ & $X(f) \cdot \delta(f-f_0)$ \\
     \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection*{Proprietà di Campionamento (Sifting) del Delta di Dirac}
+\subsubsection*{Nel Dominio del Tempo}
+\begin{itemize}
+    \item \textbf{Convoluzione:} La convoluzione con un delta traslato sposta il segnale originale:
+    \begin{equation*}
+        x(t) * \delta(t-t_0) = x(t-t_0)
+    \end{equation*}
+    
+    \item \textbf{Prodotto (Campionamento):} Il prodotto per un delta traslato "campiona" il segnale nel punto $t_0$, risultando in un delta scalato dal valore della funzione in quel punto:
+    \begin{equation*}
+        x(t) \cdot \delta(t-t_0) = x(t_0) \delta(t-t_0)
+    \end{equation*}
+\end{itemize}
+
+\subsubsection*{Nel Dominio della Frequenza}
+\begin{itemize}
+    \item \textbf{Convoluzione:} La convoluzione di una trasformata $X(f)$ con un delta traslato $\delta(f-f_0)$ trasla la trasformata originale. Questo è un modo alternativo di vedere la proprietà di modulazione:
+    \begin{equation*}
+        X(f) * \delta(f-f_0) = X(f-f_0) \quad \longleftrightarrow \quad x(t)e^{j2\pi f_0 t}
+    \end{equation*}
+    
+    \item \textbf{Prodotto (Campionamento):} Il prodotto di una trasformata $X(f)$ per un delta $\delta(f-f_0)$ "campiona" la trasformata nella frequenza $f_0$. L'antitrasformata di questo termine è un'esponenziale complessa scalata:
+    \begin{equation*}
+       X(f) \cdot \delta(f-f_0) = X(f_0) \delta(f-f_0) \quad \longleftrightarrow \quad X(f_0) e^{j2\pi f_0 t}
+    \end{equation*}
+\end{itemize}
 
 
 \section{Relazioni di Eulero}
