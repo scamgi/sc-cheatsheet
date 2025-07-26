@@ -90,14 +90,14 @@ L'energia $E_x$ di un segnale può essere calcolata sia nel dominio del tempo ch
 \end{tabular}
 \end{center}
 
-\subsection*{Definizioni delle Funzioni Base}
+\subsection*{Definizioni e Grafici delle Funzioni Base in Frequenza}
 \begin{itemize}
-    \item \textbf{Funzione Rettangolo (rect):}
+    \item \textbf{Funzione Rettangolo (Trasformata di $T \sinc(tT)$):}
     \begin{equation*}
-        \rect(t) = 
+        \rect\left(\frac{f}{T}\right) = 
         \begin{cases} 
-            1 & \text{per } |t| < 1/2 \\
-            1/2 & \text{per } |t| = 1/2 \\
+            1 & \text{per } |f| < T/2 \\
+            1/2 & \text{per } |f| = T/2 \\
             0 & \text{altrove}
         \end{cases}
     \end{equation*}
@@ -105,73 +105,81 @@ L'energia $E_x$ di un segnale può essere calcolata sia nel dominio del tempo ch
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}
+            \def\T{1.5} % Valore di T per il disegno
             \begin{axis}[
                 axis lines=middle,
-                xlabel=$t$,
+                xlabel=$f$,
                 ylabel={$y$},
-                title={Funzione Rettangolo $\rect(t)$},
+                title={Funzione Rettangolo $\rect(f/T)$},
                 xmin=-2, xmax=2,
                 ymin=-0.2, ymax=1.2,
                 enlargelimits=false,
                 ytick={0, 0.5, 1},
-                xtick={-0.5, 0.5},
+                xtick={\T/2, -\T/2},
+                xticklabels={$T/2$, $-T/2$},
             ]
-            \addplot[blue, thick, const plot] coordinates {(-2,0) (-0.5,0) (-0.5,1) (0.5,1) (0.5,0) (2,0)};
-            \addplot[only marks, mark=*, blue, mark size=1.5pt] coordinates {(-0.5,0.5) (0.5,0.5)};
+            \addplot[blue, thick, const plot] coordinates {(-2,0) (-\T/2,0) (-\T/2,1) (\T/2,1) (\T/2,0) (2,0)};
+            \addplot[only marks, mark=*, blue, mark size=1.5pt] coordinates {(-\T/2,0.5) (\T/2,0.5)};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
     
-    \item \textbf{Funzione Seno Cardinale (sinc):}
+    \item \textbf{Funzione Seno Cardinale (Trasformata di $\rect(t/T)$):}
     \begin{equation*}
-        \sinc(t) = \frac{\sin(\pi t)}{\pi t}
+       T \sinc(fT) = T \frac{\sin(\pi f T)}{\pi f T}
     \end{equation*}
 
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}
+            \def\T{1.5} % Valore di T per il disegno
             \begin{axis}[
                 axis lines=middle,
-                xlabel=$t$,
+                xlabel=$f$,
                 ylabel={$y$},
-                title={Funzione Seno Cardinale $\sinc(t)$},
-                xmin=-4, xmax=4,
-                ymin=-0.4, ymax=1.2,
+                title={Funzione Seno Cardinale $T\sinc(fT)$},
+                xmin={-4/\T}, xmax={4/\T},
+                ymin={-0.3*\T}, ymax={1.2*\T},
                 enlargelimits=false,
-                samples=201, % Aumenta i campioni per una curva liscia
+                samples=201,
                 grid=major,
+                xtick={-2/\T, -1/\T, 1/\T, 2/\T},
+                xticklabels={$-2/T$, $-1/T$, $1/T$, $2/T$},
+                ytick={\T},
+                yticklabels={$T$},
             ]
-            \addplot[blue, thick, smooth, domain=-4:4] {sin(deg(pi*x))/(pi*x)};
-            % Aggiunge un punto in (0,1) per gestire la singolarità
-            \addplot[only marks, mark=*, blue, mark size=1.5pt] coordinates {(0,1)};
+            \addplot[blue, thick, smooth, domain={-4/\T}:{4/\T}] {\T*sin(deg(pi*x*\T))/(pi*x*\T)};
+            \addplot[only marks, mark=*, blue, mark size=1.5pt] coordinates {(0,\T)};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
 
-    \item \textbf{Funzione Triangolo (tri):}
+    \item \textbf{Funzione Triangolo (Trasformata di $T \sinc^2(tT)$):}
     \begin{equation*}
-        \tri(t) = 
+        \tri\left(\frac{f}{T}\right) = 
         \begin{cases} 
-            1 - |t| & \text{per } |t| < 1 \\
+            1 - |f/T| & \text{per } |f| < T \\
             0 & \text{altrove}
         \end{cases}
     \end{equation*}
-    La funzione triangolo può anche essere vista come la convoluzione di due rettangoli: $\tri(t) = \rect(t) * \rect(t)$.
-
+    
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}
+            \def\T{1.5} % Valore di T per il disegno
             \begin{axis}[
                 axis lines=middle,
-                xlabel=$t$,
+                xlabel=$f$,
                 ylabel={$y$},
-                title={Funzione Triangolo $\tri(t)$},
-                xmin=-2, xmax=2,
+                title={Funzione Triangolo $\tri(f/T)$},
+                xmin={-1.5*\T}, xmax={1.5*\T},
                 ymin=-0.2, ymax=1.2,
                 enlargelimits=false,
                 grid=major,
+                xtick={-\T, \T},
+                xticklabels={$-T$, $T$},
             ]
-            \addplot[blue, thick] coordinates {(-2,0) (-1,0) (0,1) (1,0) (2,0)};
+            \addplot[blue, thick] coordinates {(-1.5*\T,0) (-\T,0) (0,1) (\T,0) (1.5*\T,0)};
             \end{axis}
         \end{tikzpicture}
     \end{figure}
