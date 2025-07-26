@@ -35,7 +35,7 @@ Il documento è suddiviso logicamente per coprire i principali argomenti d'esame
 
 Il progetto è organizzato con una struttura modulare per facilitare la manutenzione e l'aggiunta di contenuti.
 
-```
+```bash
 .
 ├── chapters/ # Contiene i capitoli del documento
 │ ├── ese1.tex
