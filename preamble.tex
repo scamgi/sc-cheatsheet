@@ -16,6 +16,7 @@
 % --- Grafica e Colori ---
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{pgfplots} % Per disegnare i grafici
 
 % --- Layout della pagina ---
 \usepackage[a4paper, top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry} % Margini
@@ -26,6 +27,7 @@
 % --- Tabelle e liste ---
 \usepackage{booktabs} % Per tabelle più professionali
 \usepackage{enumitem} % Per personalizzare le liste
+
 
 % --- Impostazioni di Header e Footer ---
 \pagestyle{fancy}
@@ -39,6 +41,10 @@
 \newcommand{\sinc}{\text{sinc}}
 \newcommand{\FT}{\mathcal{F}} % Trasformata di Fourier
 \newcommand{\IFT}{\mathcal{F}^{-1}} % Anti-trasformata
+
+% --- CONFIGURAZIONE PGFPLOTS ---
+\pgfplotsset{compat=1.18} % Imposta la versione di pgfplots per la compatibilità
+\usepgfplotslibrary{fillbetween}
 
 % --- Teoremi e definizioni (opzionale, per un look più pulito) ---
 \usepackage{amsthm}
