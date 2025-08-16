@@ -4,4 +4,41 @@
 \chapter*{Formulario Generale}
 \addcontentsline{toc}{chapter}{Formulario Generale}
 
-Bla bla bla.
+\section{Formule Trigonometriche}
+Una raccolta di identità trigonometriche fondamentali per la manipolazione di segnali sinusoidali.
+
+\subsection{Relazioni di Eulero}
+Le formule di Eulero sono essenziali per passare dalla notazione trigonometrica a quella esponenziale complessa, semplificando i calcoli di modulazione e le trasformate di Fourier.
+\begin{align*}
+    \cos(\theta) &= \frac{e^{j\theta} + e^{-j\theta}}{2} \\
+    \sin(\theta) &= \frac{e^{j\theta} - e^{-j\theta}}{2j}
+\end{align*}
+
+\subsection{Formule di Addizione e Sottrazione}
+Queste formule sono utili per scomporre o combinare fasi e frequenze.
+\begin{align*}
+    \cos(\alpha \pm \beta) &= \cos(\alpha)\cos(\beta) \mp \sin(\alpha)\sin(\beta) \\
+    \sin(\alpha \pm \beta) &= \sin(\alpha)\cos(\beta) \pm \cos(\alpha)\sin(\beta)
+\end{align*}
+
+\subsection{Formule di Prodotto-Somma (Formule di Werner)}
+Trasformano il prodotto di sinusoidi (che nel dominio della frequenza è una convoluzione) in una somma di sinusoidi (che è una somma di impulsi).
+\begin{align*}
+    \cos(\alpha)\cos(\beta) &= \frac{1}{2}[\cos(\alpha - \beta) + \cos(\alpha + \beta)] \\
+    \sin(\alpha)\sin(\beta) &= \frac{1}{2}[\cos(\alpha - \beta) - \cos(\alpha + \beta)] \\
+    \sin(\alpha)\cos(\beta) &= \frac{1}{2}[\sin(\alpha + \beta) + \sin(\alpha - \beta)]
+\end{align*}
+
+\subsection{Formule di Potenza (Angoli Multipli)}
+Utili per linearizzare espressioni con potenze di seni e coseni, che spesso emergono da operazioni non lineari.
+\begin{align*}
+    \cos^2(\theta) &= \frac{1 + \cos(2\theta)}{2} \\
+    \sin^2(\theta) &= \frac{1 - \cos(2\theta)}{2}
+\end{align*}
+
+\subsection{Proprietà di Parità e Periodicità}
+\begin{itemize}
+    \item \textbf{Coseno (pari):} $\cos(-\theta) = \cos(\theta)$
+    \item \textbf{Seno (dispari):} $\sin(-\theta) = -\sin(\theta)$
+    \item \textbf{Periodicità:} $\cos(\theta + 2k\pi) = \cos(\theta)$, $\sin(\theta + 2k\pi) = \sin(\theta)$ per $k \in \mathbb{Z}$.
+\end{itemize}
