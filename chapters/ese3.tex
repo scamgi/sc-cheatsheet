@@ -55,18 +55,41 @@ Spesso vengono forniti $R_x[m]$ o $S_x(f)$ con parametri incogniti (es. $R_x[m] 
 \subsection{B) Filtraggio di Processi Casuali}
 Quando un processo $x_n$ passa attraverso un filtro LTI con risposta $h_n$ (e risposta in frequenza $H(\varphi)$), si ottiene un processo $y_n$.
 
-\begin{enumerate}
-    \item \textbf{Calcola la DSP di uscita:} È quasi sempre la via più semplice.
+\subsubsection{Formule Generali di Filtraggio}
+\begin{itemize}
+    \item \textbf{DSP di uscita:} È la formula più comune e potente.
     $$ S_y(\varphi) = S_x(\varphi) \cdot |H(\varphi)|^2 $$
-    \item \textbf{Trova le statistiche di uscita:}
-    \begin{itemize}
-        \item \textbf{Valor Medio:} $m_y = m_x \cdot H(0) = m_x \cdot \sum_n h_n$.
-        \item \textbf{Potenza:} $P_y = \int_{-1/2}^{1/2} S_y(\varphi) d\varphi$.
-        \item \textbf{Varianza:} $\sigma_y^2 = P_y - m_y^2$.
-    \end{itemize}
-    \item \textbf{Calcola l'autocorrelazione di uscita:} Se richiesta, si può ottenere antitrasformando $S_y(\varphi)$ o tramite convoluzione nel dominio del tempo:
+    \item \textbf{Autocorrelazione di uscita:} Tramite IFT della DSP o convoluzione.
     $$ R_y[m] = \IFT\{S_y(\varphi)\} = R_x[m] * h[m] * h[-m] $$
-\end{enumerate}
+    dove $h[-m]$ è la risposta coniugata e invertita nel tempo.
+    \item \textbf{Cross-correlazione ingresso-uscita:}
+    $$ R_{yx}[m] = E[y_{n+m}x_n] = R_x[m] * h[m] $$
+    $$ S_{yx}(\varphi) = S_x(\varphi)H(\varphi) $$
+    \item \textbf{Valor Medio di uscita:}
+    $$ m_y = m_x \cdot H(0) = m_x \cdot \sum_{k=-\infty}^{\infty} h_k $$
+    \item \textbf{Potenza di uscita:}
+    $$ P_y = R_y[0] = \int_{-1/2}^{1/2} S_y(\varphi) d\varphi $$
+\end{itemize}
+
+\subsubsection{Caso Speciale: Filtraggio di Rumore Bianco}
+Se il processo in ingresso $x_n$ è \textbf{bianco} (incorrelato), i calcoli si semplificano enormemente.
+Ricorda che per un processo bianco $R_x[m] = \sigma_x^2\delta_m + m_x^2$ e $S_x(\varphi) = \sigma_x^2 + m_x^2\delta(\varphi)$.
+\begin{itemize}
+    \item \textbf{Varianza di uscita:} La varianza in uscita è la somma pesata della varianza in ingresso.
+    $$ \sigma_y^2 = \sigma_x^2 \cdot \sum_{k=-\infty}^{\infty} |h_k|^2 $$
+    \item \textbf{Potenza di uscita:} Si può calcolare come $\sigma_y^2 + m_y^2$.
+    $$ P_y = \sigma_x^2 \sum |h_k|^2 + (m_x \sum h_k)^2 $$
+\end{itemize}
+Questa scorciatoia è molto utile quando $h_n$ è una sequenza FIR corta (es. $h_n = \delta_n + \delta_{n-1}$).
+
+\subsubsection{Esempio Comune: Filtri Differenza}
+Operazioni come $y_n = x_n - x_{n-k}$ sono un filtraggio LTI.
+\begin{itemize}
+    \item \textbf{Risposta all'impulso:} $h_n = \delta_n - \delta_{n-k}$.
+    \item \textbf{Risposta in frequenza:} $H(\varphi) = 1 - e^{-j2\pi k\varphi}$.
+    \item \textbf{Modulo quadro:} $|H(\varphi)|^2 = |1 - e^{-j2\pi k\varphi}|^2 = (1 - \cos(2\pi k\varphi))^2 + \sin^2(2\pi k\varphi) = 2 - 2\cos(2\pi k\varphi)$.
+    \item \textbf{DSP di uscita:} $S_y(\varphi) = S_x(\varphi) \cdot [2 - 2\cos(2\pi k\varphi)]$.
+\end{itemize}
 
 \subsection{C) Domande Concettuali e Proprietà Utili}
 \begin{itemize}
