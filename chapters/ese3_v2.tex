@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chapters/ese3_v2.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Esercizio 3: Processi Casuali Stazionari (v2)}
+
+\section{Proprietà Fondamentali (Discrete $x_n$ e Continue $x(t)$)}
+\begin{itemize}
+    \item \textbf{Valor Medio:} $m_x = \E[x]$
+    \item \textbf{Varianza:} $\sigma_x^2 = \E[(x - m_x)^2] = \E[x^2] - m_x^2$
+    \item \textbf{Potenza (Valore Quadratico Medio):} $P_x = \E[x^2] = \sigma_x^2 + m_x^2$
+\end{itemize}
+
+\section{Funzioni di Correlazione e Spettro di Potenza (PSD)}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Quantità} & \textbf{Processi a Tempo Continuo} & \textbf{Processi a Tempo Discreto} \\
+        \midrule
+        \textbf{Autocorrelazione} & $R_x(\tau) = \E[x(t+\tau) \cdot x(t)]$ & $R_x[m] = \E[x_{n+m} \cdot x_n]$ \\
+        \textbf{Autocovarianza} & $C_x(\tau) = R_x(\tau) - m_x^2$ & $C_x[m] = R_x[m] - m_x^2$ \\
+        \textbf{Relazione con PSD} & $S_x(f) \iff R_x(\tau)$ (Trasf. Fourier) & $S_x(\varphi) \iff R_x[m]$ (DTFT) \\
+        \textbf{Potenza da Corr.} & $P_x = R_x(0)$ & $P_x = R_x[0]$ \\
+        \textbf{Varianza da Cov.} & $\sigma_x^2 = C_x(0)$ & $\sigma_x^2 = C_x[0]$ \\
+        \textbf{Potenza da PSD} & $P_x = \int_{-\infty}^{\infty} S_x(f) df$ & $P_x = \int_{-1/2}^{1/2} S_x(\varphi) d\varphi$ \\
+        \textbf{Coefficiente Corr.} & $\rho_x(\tau) = C_x(\tau) / C_x(0)$ & $\rho_x[m] = C_x[m] / C_x[0]$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Filtraggio di Processi Casuali (Ingresso $x$, Filtro $h$, Uscita $y$)}
+\begin{itemize}
+    \item \textbf{Valor Medio Uscita:} $m_y = m_x \cdot \int_{-\infty}^{\infty} h(\tau) d\tau$ (continuo) \quad | \quad $m_y = m_x \cdot \sum_{n=-\infty}^{\infty} h_n$ (discreto)
+    \item \textbf{PSD Uscita:} $S_y(f) = S_x(f) \cdot |H(f)|^2$
+    \item \textbf{Autocorrelazione Uscita:} $R_y(\tau) = R_x(\tau) * h(\tau) * h(-\tau)$
+\end{itemize}
+
+\section{Campionamento di Processi Casuali}
+\begin{itemize}
+    \item \textbf{Autocorrelazione Campionata:} $R_{x_n}[m] = R_{x(t)}(m \cdot T)$
+    \item \textbf{PSD Campionata (Aliasing):} $S_{x_n}(f) = f_s \sum_k S_{x(t)}(f - kf_s)$
+\end{itemize}
+
+\section{Processi e Variabili Casuali Notevoli}
+\begin{itemize}
+    \item \textbf{Processo Bianco (incorrelato):}
+    \begin{itemize}
+        \item \textit{Continuo (banda B):} $S_x(f) = \frac{\sigma_x^2}{2B} \rect\left(\frac{f}{2B}\right) + m_x^2 \delta(f) \iff R_x(\tau) = \sigma_x^2 \sinc(2B\tau) + m_x^2$
+        \item \textit{Discreto:} $R_x[m] = \sigma_x^2 \delta_m + m_x^2 \iff S_x(\varphi) = \sigma_x^2 + m_x^2 \delta(\varphi)$
+    \end{itemize}
+    \item \textbf{Processo Uniforme} in $[a, b]$:
+    \begin{itemize}
+        \item Valor medio: $m_x = \frac{a+b}{2}$
+        \item Varianza: $\sigma_x^2 = \frac{(b-a)^2}{12}$
+    \end{itemize}
+    \item \textbf{Processo Gaussiano} con media $m$ e varianza $\sigma^2$:
+        \[ p(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-m)^2}{2\sigma^2}} \]
+    \item \textbf{Varianza di una somma:} $\sigma_z^2$ di $z = a x_1 + b x_2$:
+        \[ \sigma_z^2 = a^2 \sigma_{x_1}^2 + b^2 \sigma_{x_2}^2 + 2ab \cdot \cov(x_1, x_2) \]
+        Per un processo stazionario $x_n$, $\cov(x_n, x_{n-k}) = C_x[k]$.
+    \item \textbf{Trasformazione di v.c.:} Se $z = g(x)$, la PDF di $z$, $p_z(a)$, si deriva da $p_x(a)$. Se un intervallo di valori di $x$ mappa a un singolo valore di $z$, la PDF di $z$ conterrà un impulso $\delta$ di Dirac la cui area è la probabilità di quell'evento.
+\end{itemize}
