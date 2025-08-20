@@ -45,6 +45,34 @@ Di seguito sono riassunte le principali proprietà della Trasformata di Fourier 
 
 
 \section{Proprietà Fondamentali dell'Impulso di Dirac (Sifting)}
+
+\begin{table}[h!]
+\centering
+\caption{Proprietà della Funzione Impulso di Dirac ($\delta(t)$).}
+\label{tab:dirac_properties}
+\begin{tabular}{ll}
+    \toprule
+    \textbf{Proprietà} & \textbf{Formula Matematica} \\
+    \midrule
+    Area Unitaria & $\int_{-\infty}^{\infty} \delta(t) \,dt = 1$ \\
+    \addlinespace
+    Campionamento (Sifting) & $\int_{-\infty}^{\infty} f(t) \delta(t-t_0) \,dt = f(t_0)$ \\
+    \addlinespace
+    Prodotto & $f(t)\delta(t-t_0) = f(t_0)\delta(t-t_0)$ \\
+    \addlinespace
+    Scaling & $\delta(at) = \frac{1}{|a|} \delta(t)$ \\
+    \addlinespace
+    Simmetria (Pari) & $\delta(t) = \delta(-t)$ \\
+    \addlinespace
+    Convoluzione & $f(t) * \delta(t-t_0) = f(t-t_0)$ \\
+    \addlinespace
+    Derivata del Gradino & $\frac{d}{dt}u(t) = \delta(t)$ \\
+    \addlinespace
+    Trasformata di Fourier & $\FT\{\delta(t)\} = 1$ \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
 Queste proprietà sono cruciali per la manipolazione dei segnali.
 
 \subsection*{Nel Dominio del Tempo}
