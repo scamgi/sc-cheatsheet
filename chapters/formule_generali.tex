@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % chapters/formule_generali.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Formulario Generale}
+\chapter*{Formule Generali}
 \addcontentsline{toc}{chapter}{Formulario Generale}
 
 \section{Formule Trigonometriche}
@@ -41,4 +41,102 @@ Utili per linearizzare espressioni con potenze di seni e coseni, che spesso emer
     \item \textbf{Coseno (pari):} $\cos(-\theta) = \cos(\theta)$
     \item \textbf{Seno (dispari):} $\sin(-\theta) = -\sin(\theta)$
     \item \textbf{Periodicità:} $\cos(\theta + 2k\pi) = \cos(\theta)$, $\sin(\theta + 2k\pi) = \sin(\theta)$ per $k \in \mathbb{Z}$.
+\end{itemize}
+
+\section{Concetti base di Probabilità}
+
+\subsection{Media (o Valore Atteso)}
+La media, indicata con $E[X]$ o $m_X$, rappresenta il valore medio di una variabile casuale.
+
+\begin{itemize}
+    \item \textbf{Linearità:} Per due variabili casuali X e Y e due costanti a, b:
+    $$ E[aX + bY] = aE[X] + bE[Y] $$
+    
+    \item \textbf{Media di una costante:} Il valore atteso di una costante è la costante stessa.
+    $$ E[c] = c $$
+    
+    \item \textbf{Calcolo tramite PDF:} Per una variabile continua X con densità di probabilità $f_X(x)$:
+    $$ E[X] = \int_{-\infty}^{\infty} x \cdot f_X(x) \,dx $$
+\end{itemize}
+
+
+\subsection{Varianza}
+La varianza, indicata con $Var(X)$ o $\sigma_X^2$, misura la dispersione dei valori di una variabile casuale attorno alla sua media.
+
+\begin{itemize}
+    \item \textbf{Non-negatività:} La varianza è sempre maggiore o uguale a zero.
+    $$ Var(X) \ge 0 $$
+    
+    \item \textbf{Varianza di una costante:} La varianza di una costante è zero.
+    $$ Var(c) = 0 $$
+    
+    \item \textbf{Proprietà di scala:} Per una costante $a$ e una variabile X:
+    $$ Var(aX + b) = a^2 Var(X) $$
+    
+    \item \textbf{Relazione con la media:} La varianza può essere calcolata come la differenza tra il momento secondo (la media del quadrato) e il quadrato della media.
+    $$ Var(X) = E[X^2] - (E[X])^2 $$
+    
+    \item \textbf{Varianza della somma:} Per due variabili X e Y, la varianza della loro somma è:
+    $$ Var(X + Y) = Var(X) + Var(Y) + 2\text{Cov}(X, Y) $$
+    Se X e Y sono incorrelate, la loro covarianza è zero e la formula si semplifica in $Var(X + Y) = Var(X) + Var(Y)$.
+\end{itemize}
+
+
+\subsection{Potenza}
+La potenza media di un processo stazionario $X(t)$ è il valore atteso del suo quadrato, che corrisponde al suo momento secondo.
+
+\begin{itemize}
+    \item \textbf{Relazione con media e varianza:} La potenza totale è la somma della potenza della componente continua (DC power), pari al quadrato della media, e della potenza della componente alternata (AC power), pari alla varianza.
+    $$ P_X = E[X^2] = \sigma_X^2 + m_X^2 $$
+    
+    \item \textbf{Relazione con l'autocorrelazione:} La potenza è uguale alla funzione di autocorrelazione calcolata per un ritardo nullo.
+    $$ P_X = R_X(0) $$
+\end{itemize}
+
+
+\subsection{Autocovarianza}
+L'autocovarianza, $C_X(\tau)$, di un processo stazionario misura la covarianza tra il processo e una sua versione traslata nel tempo di un ritardo $\tau$.
+
+\begin{itemize}
+    \item \textbf{Relazione con l'autocorrelazione:} È legata all'autocorrelazione e alla media del processo.
+    $$ C_X(\tau) = R_X(\tau) - m_X^2 $$
+    
+    \item \textbf{Valore per ritardo nullo:} Per un ritardo $\tau = 0$, l'autocovarianza coincide con la varianza del processo.
+    $$ C_X(0) = \sigma_X^2 $$
+    
+    \item \textbf{Simmetria:} La funzione di autocovarianza è una funzione pari.
+    $$ C_X(\tau) = C_X(-\tau) $$
+    
+    \item \textbf{Limite massimo:} Il suo valore massimo si ha sempre per ritardo nullo.
+    $$ |C_X(\tau)| \le C_X(0) $$
+\end{itemize}
+
+
+\subsection{Autocorrelazione}
+L'autocorrelazione, $R_X(\tau)$, di un processo stazionario misura la correlazione (cioè la somiglianza) tra il processo e una sua versione traslata di un ritardo $\tau$.
+
+\begin{itemize}
+    \item \textbf{Valore per ritardo nullo:} Per un ritardo $\tau = 0$, l'autocorrelazione coincide con la potenza media del processo.
+    $$ R_X(0) = E[X^2] = P_X $$
+    
+    \item \textbf{Simmetria:} La funzione di autocorrelazione è una funzione pari.
+    $$ R_X(\tau) = R_X(-\tau) $$
+    
+    \item \textbf{Limite massimo:} Il suo valore massimo (in modulo) si ha sempre per ritardo nullo.
+    $$ |R_X(\tau)| \le R_X(0) $$
+\end{itemize}
+
+
+\subsection{Densità di Probabilità (PDF - Probability Density Function)}
+La PDF, indicata con $f_X(x)$, descrive la probabilità relativa che una variabile casuale continua X assuma un determinato valore.
+
+\begin{itemize}
+    \item \textbf{Non-negatività:} La PDF è sempre maggiore o uguale a zero per ogni valore di x.
+    $$ f_X(x) \ge 0 $$
+    
+    \item \textbf{Area unitaria:} L'area totale sottesa dalla curva della PDF è uguale a 1.
+    $$ \int_{-\infty}^{\infty} f_X(x) \,dx = 1 $$
+    
+    \item \textbf{Calcolo della probabilità:} La probabilità che la variabile X cada in un intervallo $[a, b]$ si calcola integrando la PDF in quell'intervallo.
+    $$ P(a \le X \le b) = \int_{a}^{b} f_X(x) \,dx $$
 \end{itemize}
