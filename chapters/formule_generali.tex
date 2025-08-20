@@ -140,3 +140,36 @@ La PDF, indicata con $f_X(x)$, descrive la probabilità relativa che una variabi
     \item \textbf{Calcolo della probabilità:} La probabilità che la variabile X cada in un intervallo $[a, b]$ si calcola integrando la PDF in quell'intervallo.
     $$ P(a \le X \le b) = \int_{a}^{b} f_X(x) \,dx $$
 \end{itemize}
+
+\section{Formulario di Integrali Utili}
+
+\begin{table}[h!]
+\centering
+\caption{Formule Integrali}
+\label{tab:integrals}
+\begin{tabular}{ll}
+    \toprule
+    \textbf{Descrizione} & \textbf{Integrale Indefinito} \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Integrali Fondamentali}} \\
+    Potenza ($n \neq -1$) & $\int x^n dx = \frac{x^{n+1}}{n+1} + C$ \\
+    Reciproco & $\int \frac{1}{x} dx = \ln|x| + C$ \\
+    Costante & $\int k dx = kx + C$ \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Funzioni Esponenziali e Logaritmiche}} \\
+    Esponenziale (base e) & $\int e^x dx = e^x + C$ \\
+    Esponenziale (base a) & $\int a^x dx = \frac{a^x}{\ln(a)} + C$ \\
+    Logaritmo Naturale & $\int \ln(x) dx = x\ln(x) - x + C$ \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Funzioni Trigonometriche}} \\
+    Seno & $\int \sin(x) dx = -\cos(x) + C$ \\
+    Coseno & $\int \cos(x) dx = \sin(x) + C$ \\
+    Tangente & $\int \tan(x) dx = -\ln|\cos(x)| + C$ \\
+    Secante al quadrato & $\int \sec^2(x) dx = \tan(x) + C$ \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Funzioni Risultanti in Trigonometriche Inverse}} \\
+    Arcoseno & $\int \frac{1}{\sqrt{1-x^2}} dx = \arcsin(x) + C$ \\
+    Arcotangente & $\int \frac{1}{1+x^2} dx = \arctan(x) + C$ \\
+    \bottomrule
+\end{tabular}
+\end{table}
