@@ -238,6 +238,44 @@ Queste permettono di applicare la proprietà di modulazione a segnali come $\cos
 
 \end{itemize}
 
-% TODO: ADD HOW TO PRINT GRAFICI MODULO E FASE
+\section{Uscita di un Sistema LTI a un Ingresso Sinusoidale (Formula Corta)}
+Quando l'ingresso di un sistema LTI stabile è una sinusoide, l'uscita è ancora una sinusoide della \textbf{stessa frequenza}, ma con ampiezza e fase modificate dalla risposta in frequenza del sistema $H(f)$, valutata alla frequenza dell'ingresso $f_0$.
 
-% TODO: ADD THE LAST PART ON how to compute uscita del sistema con x(t).
+Questo metodo è una scorciatoia estremamente potente che evita il calcolo esplicito di trasformate e antitrasformate.
+
+\subsection{Formula per Ingresso Cosinusoidale}
+Dato un ingresso del tipo:
+\begin{equation*}
+    x(t) = A \cos(2\pi f_0 t + \phi)
+\end{equation*}
+L'uscita del sistema sarà:
+\begin{equation*}
+    y(t) = A \cdot |H(f_0)| \cos(2\pi f_0 t + \phi + \angle H(f_0))
+\end{equation*}
+
+\subsection{Formula per Ingresso Sinusoidale}
+Analogamente, per un ingresso sinusoidale:
+\begin{equation*}
+    x(t) = A \sin(2\pi f_0 t + \phi)
+\end{equation*}
+L'uscita del sistema sarà:
+\begin{equation*}
+    y(t) = A \cdot |H(f_0)| \sin(2\pi f_0 t + \phi + \angle H(f_0))
+\end{equation*}
+
+\subsubsection{Componenti della Formula}
+\begin{itemize}
+    \item \textbf{$A$}: Ampiezza del segnale di ingresso.
+    \item \textbf{$f_0$}: Frequenza del segnale di ingresso.
+    \item \textbf{$H(f_0)$}: È il valore \textbf{complesso} della risposta in frequenza calcolata in $f=f_0$.
+    \item \textbf{$|H(f_0)|$}: Il \textbf{modulo} di $H(f_0)$. Rappresenta il guadagno (o attenuazione) che il sistema applica all'ampiezza dell'ingresso.
+    \item \textbf{$\angle H(f_0)$}: La \textbf{fase} (o argomento) di $H(f_0)$. Rappresenta lo sfasamento (in radianti) introdotto dal sistema.
+\end{itemize}
+
+\subsubsection{Procedura Pratica}
+\begin{enumerate}
+    \item Identificare ampiezza $A$ e frequenza $f_0$ del segnale di ingresso.
+    \item Calcolare il numero complesso $H(f_0)$ sostituendo $f=f_0$ nell'espressione della risposta in frequenza.
+    \item Calcolare il modulo $|H(f_0)|$ e la fase $\angle H(f_0)$ di questo numero.
+    \item Inserire i valori ottenuti nella formula dell'uscita.
+\end{enumerate}
