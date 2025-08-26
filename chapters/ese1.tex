@@ -235,6 +235,56 @@ Queste permettono di applicare la proprietà di modulazione a segnali come $\cos
             \end{axis}
         \end{tikzpicture}
     \end{figure}
+    
+    \item \textbf{Trasformata di Coseno:}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \def\f{1.5} % Valore di f_0 per il disegno
+            \begin{axis}[
+                axis lines=middle,
+                xlabel=$f$,
+                ylabel={$X(f)$},
+                title={Trasformata di $\cos(2\pi f_0 t)$},
+                xmin={-1.5*\f}, xmax={1.5*\f},
+                ymin=-0.2, ymax=0.7,
+                enlargelimits=false,
+                grid=major,
+                xtick={-\f, \f},
+                xticklabels={$-f_0$, $f_0$},
+                ytick={0.5},
+                yticklabels={$1/2$},
+            ]
+            \addplot[blue, thick, ->] coordinates {(-\f,0)} -- (-\f,0.5);
+            \addplot[blue, thick, ->] coordinates {(\f,0)} -- (\f,0.5);
+            \end{axis}
+        \end{tikzpicture}
+    \end{figure}
+
+    \item \textbf{Trasformata di Seno (Parte Immaginaria):}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \def\f{1.5} % Valore di f_0 per il disegno
+            \begin{axis}[
+                axis lines=middle,
+                xlabel=$f$,
+                ylabel={Im{$X(f)$}},
+                title={Trasformata di $\sin(2\pi f_0 t)$},
+                xmin={-1.5*\f}, xmax={1.5*\f},
+                ymin=-0.7, ymax=0.7,
+                enlargelimits=false,
+                grid=major,
+                xtick={-\f, \f},
+                xticklabels={$-f_0$, $f_0$},
+                ytick={-0.5, 0.5},
+                yticklabels={$-1/2$, $1/2$},
+            ]
+            \addplot[blue, thick, ->] coordinates {(-\f,0)} -- (-\f,0.5);
+            \addplot[blue, thick, ->] coordinates {(\f,0)} -- (\f,-0.5);
+            \end{axis}
+        \end{tikzpicture}
+    \end{figure}
 
 \end{itemize}
 
