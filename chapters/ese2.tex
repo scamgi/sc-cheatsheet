@@ -37,7 +37,6 @@
     \item \textbf{Convoluzione Circolare:} $z_n = x_n \circledast y_n \quad \iff \quad Z_k = X_k \cdot Y_k$
     \item \textbf{DFT di un impulso traslato:} $x_n = A \delta_{n-n_0} \quad \iff \quad X_k = A e^{-j2\pi \frac{kn_0}{N}}$
     \item \textbf{DFT di una costante:} $x_n = A \quad \iff \quad X_k = A \cdot N \cdot \delta_k$
-    \item \textbf{DFT di un coseno:} $x_n = \cos\left(2\pi \frac{k_0 n}{N}\right) \quad \iff \quad X_k = \frac{N}{2}[\delta_{k-k_0} + \delta_{k-(N-k_0)}]$
-    \item \textbf{DFT di un seno:} $x_n = \sin\left(2\pi \frac{k_0 n}{N}\right) \quad \iff \quad X_k = \frac{N}{2j}[\delta_{k-k_0} - \delta_{k-(N-k_0)}]$
+    \item \textbf{DFT di un coseno:} $x_n = A \cos\left(2\pi \frac{k_0 n}{N}\right) \quad \iff \quad X_k = A \frac{N}{2}[\delta_{k-k_0} + \delta_{k-(N-k_0)}]$
+    \item \textbf{DFT di un seno:} $x_n = A \sin\left(2\pi \frac{k_0 n}{N}\right) \quad \iff \quad X_k = A \frac{N}{2j}[\delta_{k-k_0} - \delta_{k-(N-k_0)}]$
 \end{itemize}
-
